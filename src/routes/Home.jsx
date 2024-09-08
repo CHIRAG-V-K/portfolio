@@ -3,14 +3,13 @@ import { ParticlesBackground } from "../utils";
 import {
   NavBar,
   Hero,
-  Model3D,
   About,
   Tech,
   Experience,
   ContactUs,
   Galaxy,
 } from "../components";
-import Model3DCanvas from "../components/Model3DCanvas";
+import Model3DCanvas from "../components/canvas/Model3DCanvas";
 // import { useGLTF } from "@react-three/drei";
 
 const Home = () => {
@@ -21,19 +20,23 @@ const Home = () => {
 
   //   }
   // ));
+  const currentRef = React.useRef(null);
 
   return (
-    <div className="w-full bg-transparent flex flex-col items-center justify-center h-svh overflow-y-auto overflow-x-hidden">
+    <div
+      ref={currentRef}
+      className="w-full bg-transparent flex flex-col items-center justify-center h-svh overflow-y-auto overflow-x-hidden"
+    >
       <ParticlesBackground />
-      <NavBar />
+      <NavBar topRef={currentRef} />
+      <Model3DCanvas />
       <div className="relative w-full h-svh max-w-7xl z-0 px-5">
         <Hero />
-        <Model3DCanvas />
-        {/* <About />
-        <Tech />
+        <About />
         <Experience />
+        <Tech />
         <ContactUs />
-        <Galaxy /> */}
+        <Galaxy />
       </div>
     </div>
   );
