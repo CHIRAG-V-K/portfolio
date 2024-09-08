@@ -54,7 +54,7 @@ export function Model(props) {
     },
   });
   const ref = React.useRef();
-  const { scene, animations } = useGLTF("./models/angel.glb");
+  const { scene, animations } = useGLTF("./models/angel/scene.gltf");
   const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene]);
   const { nodes, materials } = useGraph(clone);
   const { actions } = useAnimations(animations, ref);
@@ -1624,4 +1624,4 @@ export function Model(props) {
   );
 }
 
-useGLTF.preload("./models/angel.glb");
+useGLTF.preload("./models/angel/scene.gltf");
