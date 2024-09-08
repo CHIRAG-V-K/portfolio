@@ -13,4 +13,9 @@ export const navItems = [
     { id: "tech", icon: Layers },
     { id: "experience", icon: BriefcaseBusiness },
     { id: "contactus", icon: Contact },
-] 
+]
+
+export const phrases = [
+    `I'm a Full Stack Developer`,
+    `I'm an Application Developer`,
+];

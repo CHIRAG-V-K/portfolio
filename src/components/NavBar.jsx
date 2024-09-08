@@ -5,10 +5,10 @@ import { Link } from "react-router-dom";
 const NavItem = ({ icon: Icon, isActive, onClick }) => (
   <button
     onClick={onClick}
-    className={`w-10 h-10 rounded-full shadow-inner hover:shadow-2xl flex items-center justify-center transition-all duration-200 ease-in-out
+    className={`w-10 h-10 rounded-full shadow-inner-depth hover:shadow-sm  flex items-center justify-center transition-all duration-200 ease-in-out
       ${
         isActive
-          ? "bg-orange-300 text-white"
+          ? "bg-primary text-white"
           : "bg-white text-gray-600 hover:bg-gray-300"
       }`}
   >

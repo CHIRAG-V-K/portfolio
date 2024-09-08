@@ -29,7 +29,7 @@ const ParticlesBackground = () => {
         events: {
           onClick: {
             enable: true,
-            mode: "push",
+            mode: "repulse",
           },
           onHover: {
             enable: true,
@@ -41,8 +41,12 @@ const ParticlesBackground = () => {
             quantity: 4,
           },
           grab: {
-            distance: 350,
+            distance: 300,
             duration: 0.4,
+          },
+          repulse: {
+            distance: 350,
+            duration: 0.3,
           },
         },
       },
@@ -64,23 +68,23 @@ const ParticlesBackground = () => {
             default: "bounce",
           },
           random: false,
-          speed: 6,
+          speed: 4,
           straight: false,
         },
         number: {
           density: {
             enable: true,
           },
-          value: 100,
+          value: 90,
         },
         opacity: {
           value: 0.5,
         },
         shape: {
-          type: "circle",
+          type: "star",
         },
         size: {
-          value: { min: 1, max: 3 },
+          value: { min: 1, max: 6 },
         },
       },
       detectRetina: true,
