@@ -13,7 +13,8 @@ import chirag_png from "../assets/images/chirag.png";
 import chirag_gif from "../assets/images/chirag.gif";
 import { styles } from "../styles";
 import { PopupText } from "../utils";
-import { phrases } from "../constants";
+import { phrases, name } from "../constants";
+import { HeroWrapper } from "../hoc";
 
 const AnimatedHeroText = ({ name, phrases }) => {
   const typewriterRef = useRef(null);
@@ -45,7 +46,7 @@ const AnimatedHeroText = ({ name, phrases }) => {
   }, [name, phrases]);
 
   return (
-    <div className="hero-text text-3xl max-sm:text-xl font-bold min-h-[4rem]">
+    <div className="hero-text text-3xl max-sm:text-lg font-bold min-h-[4rem] ">
       <h1 ref={typewriterRef}></h1>
     </div>
   );
@@ -54,12 +55,12 @@ const AnimatedHeroText = ({ name, phrases }) => {
 const ProfilePictureCircle = ({ src, gifSrc }) => {
   return (
     <ParallaxTilt
-      glareEnable={true}
-      glareMaxOpacity={0.6}
-      scale={1.1}
-      perspective={500}
-      tiltMaxAngleX={10}
-      tiltMaxAngleY={10}
+      glareEnable={false}
+      glareMaxOpacity={0}
+      scale={1.2}
+      perspective={600}
+      tiltMaxAngleX={15}
+      tiltMaxAngleY={15}
     >
       <div className="rounded-full border-white border-2 w-80 h-80 max-sm:w-60 max-sm:h-60 flex justify-center items-center ">
         {/* Use the img tag for displaying either a GIF or PNG */}
@@ -79,18 +80,16 @@ const ProfilePictureCircle = ({ src, gifSrc }) => {
 };
 
 const Hero = () => {
-  const name = ["Full Stack Developer", "Application Developer"];
-
   return (
-    <section className="relative w-full  mt-[18vh] max-lg:mt-[20vh]">
+    <section className="relative w-full mt-[4vh]">
       <motion.div
-        className="absolute inset-0 w-full h-[70vh] rounded-2xl bg-black z-2 blur"
+        className="absolute inset-0 w-full h-[75vh] rounded-2xl bg-black z-2 blur"
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.2 }}
         transition={{ duration: 1.5, ease: "easeInOut" }}
       />
-      <div className="relative z-10 w-full h-[70vh] px-6 grid lg:grid-cols-2 grid-flow-rows">
-        <div className="flex justify-end max-lg:justify-center p-10 items-center ">
+      <div className="relative z-0 w-full h-[75vh]  grid lg:grid-cols-2 grid-flow-rows">
+        <div className="flex justify-center p-5 items-center ">
           <ProfilePictureCircle src={chirag_png} gifSrc={chirag_gif} />
         </div>
         <div className="w-full flex flex-col justify-center items-start  max-lg:items-center ">
@@ -117,4 +116,4 @@ const Hero = () => {
   );
 };
 
-export default Hero;
+export default HeroWrapper(Hero, "hero");
