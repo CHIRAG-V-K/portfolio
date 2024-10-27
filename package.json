@@ -27,7 +27,7 @@
     "react-router-dom": "^6.26.1",
     "react-toastify": "^10.0.5",
     "react-vertical-timeline-component": "^3.6.0",
-    "three": "^0.168.0",
+    "three": "^0.146.0",
     "three-stdlib": "^2.32.2",
     "typewriter-effect": "^2.21.0"
   },

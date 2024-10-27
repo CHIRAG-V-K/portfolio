@@ -32,7 +32,7 @@ import {
 } from "../assets";
 
 export const navItems = [
-    { id: "/", icon: Home },
+    { id: "home", icon: Home },
     { id: "about", icon: BadgeInfo },
     { id: "work", icon: BriefcaseBusiness },
     { id: "tech", icon: Layers },

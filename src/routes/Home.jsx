@@ -28,15 +28,15 @@ const Home = () => {
       className="w-full bg-transparent flex flex-col items-center justify-center h-svh overflow-y-auto overflow-x-hidden"
     >
       <ParticlesBackground />
-      <NavBar topRef={currentRef} />
-      <Model3DCanvas />
+      <NavBar />
       <div className="relative w-full h-svh max-w-7xl z-0 px-5">
-        <Hero />
-        <About />
-        <Experience />
-        <Tech />
-        <ContactUs />
-        <Galaxy />
+        <Model3DCanvas />
+        {/* <Hero /> */}
+        {/* <About /> */}
+        {/* <Experience /> */}
+        {/* <Tech /> */}
+        {/* <ContactUs /> */}
+        {/* <Galaxy /> */}
       </div>
     </div>
   );

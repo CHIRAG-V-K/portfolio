@@ -16,32 +16,20 @@ const NavItem = ({ icon: Icon, isActive, onClick }) => (
   </button>
 );
 
-const NavBar = ({ topRef }) => {
-  const [activeNav, setActiveNav] = useState("/");
-
-  const scrollToTop = useCallback(() => {
-    if (topRef.current) {
-      topRef.current.scrollTop = 0;
-    }
-  }, []);
+const NavBar = () => {
+  const [activeNav, setActiveNav] = useState("home");
 
   return (
-    <div
-      ref={topRef}
-      className="fixed top-0 left-1/2 transform  -translate-x-1/2 z-50  xl:w-1/4 lg:w-1/2 w-3/4 "
-    >
+    <div className="fixed top-0 left-1/2 transform  -translate-x-1/2 z-50  xl:w-1/4 lg:w-1/2 w-3/4 ">
       <div className="bg-white rounded-full shadow-card shadow-slate-400 p-4 flex items-center justify-evenly mx-auto my-4">
         {navItems.map((item) => (
-          <a key={item.id} href={item.id !== "/" ? `#${item.id}` : item.id}>
+          <a key={item.id} href={`#${item.id}`}>
             <NavItem
               key={item.id}
               icon={item.icon}
               isActive={activeNav === item.id}
               onClick={() => {
                 setActiveNav(item.id);
-                if (item.id === "home") {
-                  scrollToTop();
-                }
               }}
             />
           </a>
