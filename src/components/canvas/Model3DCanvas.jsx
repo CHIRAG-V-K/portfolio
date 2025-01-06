@@ -1,6 +1,8 @@
-import React, { Suspense } from "react";
-import { Canvas } from "@react-three/fiber";
+import React, { Suspense, useRef } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
 import {
+  ContactShadows,
+  Environment,
   OrbitControls,
   PerspectiveCamera,
   Preload,
@@ -27,14 +29,14 @@ const Model3DCanvas = () => {
     },
   });
   return (
-    <div className="fixed left-0 right-0 bottom-0 top-0  ">
+    <div className="fixed left-0 right-0 bottom-0 top-0">
       <Canvas
         // frameloop="demand"
         shadows
         gl={{ preserveDrawingBuffer: true, antialias: true, alpha: true }}
       >
         <PerspectiveCamera makeDefault position={[0, 2, 5]} fov={35} />
-        <ambientLight intensity={1} />
+        <Environment preset="sunset" />
         <spotLight
           position={[10, 10, 10]}
           angle={0.2}
@@ -45,16 +47,31 @@ const Model3DCanvas = () => {
         <pointLight position={[-10, -10, -10]} decay={0} intensity={1} />
         <Suspense fallback={<CanvasLoader />}>
           <OrbitControls
-            enableZoom={true}
+            enableZoom={false}
             maxPolarAngle={Math.PI / 2}
             minPolarAngle={Math.PI / 2}
-            // enableDamping={true} // Enable smooth damping
-            // dampingFactor={0.05} // Adjust damping factor as needed
+            enablePan={true}
+            enableRotate={false}
+            enableDamping={true} // Enable smooth damping
+            dampingFactor={0.05} // Adjust damping factor as needed
           />
           {/* <ScrollControls pages={1}> */}
           {/* <Model scale={canvas.scale} /> */}
-          <group position={[0, -1, 0]}>
+          <group position={[-1.3, -1, 0]}>
+            <ContactShadows
+              opacity={1}
+              scale={10}
+              blur={1}
+              far={20}
+              resolution={256}
+              color="#fff"
+              position={[1.3, 0, 0]}
+            />
             <Chirag animation={animation} />
+            <mesh scale={5} rotation={10} position-y={-0.001}>
+              <planeGeometry />
+              <meshStandardMaterial color={"#000"} />
+            </mesh>
           </group>
           {/* </ScrollControls> */}
         </Suspense>

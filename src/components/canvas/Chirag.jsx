@@ -5,12 +5,12 @@ Command: npx gltfjsx@6.5.2 public/models/Chirag.glb
 
 import React, { useEffect, useRef, useState } from "react";
 import { useFrame, useGraph } from "@react-three/fiber";
-import { useAnimations, useFBX, useGLTF } from "@react-three/drei";
+import { useAnimations, useFBX, useGLTF, useScroll } from "@react-three/drei";
 import { SkeletonUtils } from "three-stdlib";
 import { useControls } from "leva";
 import * as THREE from "three";
 export function Chirag(props) {
-  const { animation } = props;
+  const { animation, scrollRef } = props;
   const [hasPlayed, setHasPlayed] = useState(false);
   const { x, y, z, start, headflow, cursorflow, wireframe } = useControls({
     x: {
@@ -112,6 +112,12 @@ export function Chirag(props) {
       };
     }
   }, [animation, actions, hasPlayed]);
+
+  // useEffect(() => {
+  //   Object.values(materials).forEach((material) => {
+  //     material.wireframe = wireframe;
+  //   });
+  // }, [wireframe]);
 
   return (
     <group {...props} ref={groupRef} dispose={null}>

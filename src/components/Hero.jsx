@@ -90,7 +90,7 @@ const Hero = () => {
       />
       <div className="relative z-0 w-full h-[75vh]  grid lg:grid-cols-2 grid-flow-rows">
         <div className="flex justify-center p-5 items-center ">
-          <ProfilePictureCircle src={chirag_png} gifSrc={chirag_gif} />
+          {/* <ProfilePictureCircle src={chirag_png} gifSrc={chirag_gif} /> */}
         </div>
         <div className="w-full flex flex-col justify-center items-start  max-lg:items-center ">
           {/* <p className={`${styles.heroSubText} `}>Hi 👋, my name is</p>

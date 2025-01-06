@@ -7,9 +7,9 @@ import {
   Tech,
   Experience,
   ContactUs,
-  Galaxy,
 } from "../components";
 import Model3DCanvas from "../components/canvas/Model3DCanvas";
+import { useScroll } from "@react-three/drei";
 // import { useGLTF } from "@react-three/drei";
 
 const Home = () => {
@@ -31,12 +31,11 @@ const Home = () => {
       <NavBar />
       <div className="relative w-full h-svh max-w-7xl z-0 px-5">
         <Model3DCanvas />
-        {/* <Hero /> */}
-        {/* <About /> */}
-        {/* <Experience /> */}
-        {/* <Tech /> */}
-        {/* <ContactUs /> */}
-        {/* <Galaxy /> */}
+        <Hero />
+        <About />
+        <Experience />
+        <Tech />
+        <ContactUs />
       </div>
     </div>
   );
