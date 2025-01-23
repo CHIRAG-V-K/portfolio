@@ -16,7 +16,7 @@ const NavItem = ({ icon: Icon, isActive, onClick }) => (
   </button>
 );
 
-const NavBar = () => {
+const NavBar = ({ onSectionChange }) => {
   const [activeNav, setActiveNav] = useState("home");
 
   return (

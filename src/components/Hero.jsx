@@ -81,14 +81,14 @@ const ProfilePictureCircle = ({ src, gifSrc }) => {
 
 const Hero = () => {
   return (
-    <section className="relative w-full mt-[4vh]">
+    <div className="relative w-full mt-[4vh]">
       <motion.div
-        className="absolute inset-0 w-full h-[75vh] rounded-2xl bg-black z-2 blur"
+        className="absolute inset-0 w-full h-[75vh] rounded-2xl bg-black  blur"
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.2 }}
         transition={{ duration: 1.5, ease: "easeInOut" }}
       />
-      <div className="relative z-0 w-full h-[75vh]  grid lg:grid-cols-2 grid-flow-rows">
+      <div className="relative w-full h-[75vh]  grid lg:grid-cols-2 grid-flow-rows">
         <div className="flex justify-center p-5 items-center ">
           {/* <ProfilePictureCircle src={chirag_png} gifSrc={chirag_gif} /> */}
         </div>
@@ -112,8 +112,9 @@ const Hero = () => {
           <AnimatedHeroText name={name} phrases={phrases} />
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 
-export default HeroWrapper(Hero, "hero");
+// export default HeroWrapper(Hero, "hero");
+export default Hero;

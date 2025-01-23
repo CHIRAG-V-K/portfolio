@@ -1,14 +1,14 @@
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from "./routes/Home";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Model3DCanvas } from "./components";
 function App() {
   return (
     <>
       <BrowserRouter basename="/">
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Model3DCanvas />} />
         </Routes>
       </BrowserRouter>
       <ToastContainer />

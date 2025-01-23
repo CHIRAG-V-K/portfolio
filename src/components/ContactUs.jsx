@@ -6,6 +6,7 @@ import { ChevronRight } from "lucide-react";
 import emailjs from "@emailjs/browser";
 import { toast } from "react-toastify";
 import { SocialMediaIcons } from ".";
+
 const ContactUs = () => {
   const [form, setForm] = useState({
     name: "",
@@ -64,7 +65,7 @@ const ContactUs = () => {
   };
   return (
     <motion.div variants={slideIn("left", "tween", 0, 0.5)}>
-      <div className="w-3/4 p-5 bg-gray-300 flex flex-col items-center justify-center gap-5 rounded-md border-2 border-gray-800 shadow-[4px_4px_0px_0px_rgba(50,50,50,1)]">
+      <div className=" p-5 bg-gray-300 flex flex-col items-center justify-center gap-5 rounded-md border-2 border-gray-800 shadow-[4px_4px_0px_0px_rgba(50,50,50,1)]">
         <div className="grid grid-cols-3">
           <div className="w-full flex flex-col items-center justify-center gap-5">
             <p className="font-bold text-xl text-gray-800 self-start">
@@ -143,4 +144,5 @@ const ContactUs = () => {
   );
 };
 
-export default SectionWrapper(ContactUs, "contactus");
+export default ContactUs;
+// export default SectionWrapper(ContactUs, "contactus");

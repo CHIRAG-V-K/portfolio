@@ -9,6 +9,9 @@ import { useAnimations, useFBX, useGLTF, useScroll } from "@react-three/drei";
 import { SkeletonUtils } from "three-stdlib";
 import { useControls } from "leva";
 import * as THREE from "three";
+
+useGLTF.preload("/models/Chirag.glb");
+
 export function Chirag(props) {
   const { animation, scrollRef } = props;
   const [hasPlayed, setHasPlayed] = useState(false);
@@ -101,7 +104,7 @@ export function Chirag(props) {
   useEffect(() => {
     const currentAction = actions[animation];
     if (currentAction) {
-      Object.values(actions).forEach((action) => action.stop());
+      Object.values(actions).forEach((action) => action.fadeOut(0.5));
       // currentAction.reset().setLoop(THREE.LoopOnce, 1).fadeIn(0.5).play();
       currentAction.reset().fadeIn(0.5).play();
       currentAction.clampWhenFinished = true;
@@ -187,5 +190,3 @@ export function Chirag(props) {
     </group>
   );
 }
-
-useGLTF.preload("/models/Chirag.glb");
