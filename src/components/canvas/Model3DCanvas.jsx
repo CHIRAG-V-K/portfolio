@@ -80,7 +80,16 @@ const Model3DCanvas = () => {
                 <Chirag animation={animation} />
               </group>
               <ScrollManager section={section} onSectionChange={setSection} />
-              <Scroll html>
+              <Scroll
+                html
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
                 <Interface />
               </Scroll>
             </ScrollControls>
