@@ -81,7 +81,7 @@ const ProfilePictureCircle = ({ src, gifSrc }) => {
 
 const Hero = () => {
   return (
-    <div id="home" className="relative w-full ">
+    <div className="relative w-full ">
       <motion.div
         className="absolute inset-0 w-full h-[75vh] rounded-2xl bg-black  blur"
         initial={{ opacity: 0 }}

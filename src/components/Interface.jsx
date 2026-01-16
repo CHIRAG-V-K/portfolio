@@ -12,32 +12,33 @@ const Section = ({ children }) => {
     </section>
   );
 };
-const Section2 = ({ children }) => {
-  return (
-    <section className="h-full w-screen max-w-screen-2xl flex flex-col items-center justify-center px-[10vw]">
-      {children}
-    </section>
-  );
-};
+
+// const Section2 = ({ children }) => {
+//   return (
+//     <section className="h-full w-screen max-w-screen-2xl flex flex-col items-center justify-center px-[10vw] my-[10vw]">
+//       {children}
+//     </section>
+//   );
+// };
 
 export const Interface = () => {
   return (
-    <>
+    <div id="home">
       <Section>
         <Hero />
       </Section>
       <Section>
         <About />
       </Section>
-      <Section2>
+      <Section>
         <Experience />
-      </Section2>
+      </Section>
       <Section>
         <Tech />
       </Section>
       <Section>
         <ContactUs />
       </Section>
-    </>
+    </div>
   );
 };

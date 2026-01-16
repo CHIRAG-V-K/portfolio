@@ -13,33 +13,37 @@ import * as THREE from "three";
 useGLTF.preload("/models/Chirag.glb");
 
 export function Chirag(props) {
-  const { animation, scrollRef } = props;
   const [hasPlayed, setHasPlayed] = useState(false);
+  const { animation, scrollRef } = props;
   const { x, y, z, start, headflow, cursorflow, wireframe } = useControls({
     x: {
       value: 0,
       min: 0,
       max: 20,
+      hidden: true,
     },
     y: {
       value: 0,
       min: 0,
       max: 20,
+      hidden: true,
     },
     z: {
       value: 0,
       min: 0,
       max: 20,
+      hidden: true,
     },
     start: {
       value: false,
       onChange: (value) => {
         setHasPlayed(!value);
       },
+      hidden: true,
     },
-    wireframe: false,
-    headflow: false,
-    cursorflow: false,
+    wireframe: { value: false, hidden: true },
+    headflow: { value: false, hidden: true },
+    cursorflow: { value: false, hidden: true },
   });
 
   const groupRef = useRef();

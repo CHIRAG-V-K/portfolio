@@ -18,33 +18,40 @@ import NavBar from "../NavBar";
 import { ScrollManager } from "./ScrollManager";
 import { ParticlesBackground } from "../../utils";
 
+const NUM_SECTIONS = 5; // Update if Interface changes
+
 const Model3DCanvas = () => {
-  const { animation } = useControls({
-    animation: {
-      value: "Wave",
-      options: [
-        "Wave",
-        "Talking",
-        "Up",
-        "Down",
-        "Sitting",
-        "PushUp",
-        "Shoot",
-        "Swing",
-      ],
-    },
-  });
   const [section, setSection] = React.useState(0);
+  const [pendingSection, setPendingSection] = React.useState(null);
+  const [transitioning, setTransitioning] = React.useState(false);
+  const sectionAnimations = ["Wave", "Sitting", "PushUp", "Shoot", "Talking"];
+  const animation = transitioning
+    ? "Down"
+    : sectionAnimations[section] || "Wave";
+
+  // Handler for NavBar navigation
+  const handleSectionChange = (newSection) => {
+    if (newSection !== section) {
+      setTransitioning(true);
+      setPendingSection(newSection);
+      setTimeout(() => {
+        setSection(newSection);
+        setTransitioning(false);
+        setPendingSection(null);
+      }, 600); // 600ms for Down animation
+    }
+  };
+
   return (
     <>
       <ParticlesBackground />
-      <NavBar onSectionChange={setSection} />
+      <NavBar
+        onSectionChange={handleSectionChange}
+        activeSection={section}
+        numSections={NUM_SECTIONS}
+      />
       <div className="fixed left-0 right-0 bottom-0 top-0">
-        <Canvas
-          // frameloop="demand"
-          shadows
-          gl={{ antialias: true, alpha: true }}
-        >
+        <Canvas shadows gl={{ antialias: true, alpha: true }}>
           <PerspectiveCamera makeDefault position={[0, 2, 5]} fov={35} />
           <Environment preset="sunset" />
           <spotLight
@@ -63,10 +70,10 @@ const Model3DCanvas = () => {
               minPolarAngle={Math.PI / 2}
               enablePan={false}
               enableRotate={false}
-              enableDamping={true} // Enable smooth damping
-              dampingFactor={0.1} // Adjust damping factor as needed
+              enableDamping={true}
+              dampingFactor={0.1}
             />
-            <ScrollControls pages={6.6} damping={0.1}>
+            <ScrollControls pages={NUM_SECTIONS} damping={0.1}>
               <group position={[-1.3, -1, 0]}>
                 <ContactShadows
                   opacity={1}
@@ -77,9 +84,14 @@ const Model3DCanvas = () => {
                   color="#fff"
                   position={[1.3, 0, 0]}
                 />
-                <Chirag animation={animation} />
+                <Chirag animation={animation} section={section} />
               </group>
-              <ScrollManager section={section} onSectionChange={setSection} />
+              <ScrollManager
+                section={section}
+                onSectionChange={setSection}
+                numSections={NUM_SECTIONS}
+                transitioning={transitioning}
+              />
               <Scroll
                 html
                 style={{

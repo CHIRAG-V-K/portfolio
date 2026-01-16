@@ -1,11 +1,12 @@
 import React from "react";
 import {
-  VerticalTimeline,
-  VerticalTimelineElement,
-} from "react-vertical-timeline-component";
+  Timeline,
+  TimelineItem,
+  TimelinePoint,
+  TimelineContent,
+  TimelineBody,
+} from "flowbite-react";
 import { motion } from "framer-motion";
-
-import "react-vertical-timeline-component/style.min.css";
 
 import { styles } from "../styles";
 import { experiences } from "../constants";
@@ -14,71 +15,66 @@ import { textVariant } from "../utils/motion";
 
 const ExperienceCard = ({ experience }) => {
   return (
-    <VerticalTimelineElement
-      contentStyle={{
-        background: "#1d1836",
-        color: "#fff",
-      }}
-      contentArrowStyle={{ borderRight: "7px solid  #232631" }}
-      date={experience.date}
-      iconStyle={{ background: experience.iconBg }}
-      icon={
-        <div className="flex justify-center items-center w-full h-full">
-          <img
-            src={experience.icon}
-            alt={experience.company_name}
-            className="w-[60%] h-[60%] object-contain"
-          />
-        </div>
-      }
-    >
-      <div>
-        <h3 className="text-white text-[24px] font-bold">{experience.title}</h3>
-        <p
-          className="text-secondary text-[16px] font-semibold"
-          style={{ margin: 0 }}
-        >
-          {experience.company_name}
-        </p>
-      </div>
-
-      <ul className="mt-5 list-disc ml-5 space-y-2">
-        {experience.points.map((point, index) => (
-          <li
-            key={`experience-point-${index}`}
-            className="text-white-100 text-[14px] pl-1 tracking-wider"
-          >
-            {point}
-          </li>
-        ))}
-      </ul>
-    </VerticalTimelineElement>
+    <TimelineItem>
+      <TimelinePoint />
+      <TimelineContent>
+        <TimelineBody className="mt-6">
+          <div className="flex items-center gap-4 max-w-xs md:max-w-sm lg:max-w-md xl:max-w-lg">
+            <div
+              className="flex justify-center items-center w-16 h-16 rounded-full"
+              style={{ background: experience.iconBg }}
+            >
+              <img
+                src={experience.icon}
+                alt={experience.company_name}
+                className="w-10 h-10 object-contain"
+              />
+            </div>
+            <div>
+              <h3 className="text-white text-xl font-bold">
+                {experience.title}
+              </h3>
+              <p className="text-secondary text-base font-semibold m-0">
+                {experience.company_name}
+              </p>
+              <span className="text-xs text-gray-400">{experience.date}</span>
+            </div>
+          </div>
+          <ul className="mt-3 list-disc ml-5 space-y-2">
+            {experience.points.map((point, index) => (
+              <li
+                key={`experience-point-${index}`}
+                className="text-white-100 text-sm pl-1 tracking-wider break-words"
+              >
+                {point}
+              </li>
+            ))}
+          </ul>
+        </TimelineBody>
+      </TimelineContent>
+    </TimelineItem>
   );
 };
 
 const Experience = () => {
   return (
-    <>
+    <div>
       <motion.div variants={textVariant()}>
-        <p className={`${styles.sectionSubText} text-center`}>
-          What I have done so far
-        </p>
-        <h2 className={`${styles.sectionHeadText} text-center`}>
-          Work Experience.
-        </h2>
+        <p className={`${styles.sectionSubText} `}>What I have done so far</p>
+        <h2 className={`${styles.sectionHeadText}`}>Work Experience.</h2>
       </motion.div>
 
-      <div className="mt-20 flex flex-col">
-        <VerticalTimeline>
+      <div className="mt-10">
+        <Timeline>
           {experiences.map((experience, index) => (
             <ExperienceCard
               key={`experience-${index}`}
               experience={experience}
             />
           ))}
-        </VerticalTimeline>
+        </Timeline>
       </div>
-    </>
+    </div>
   );
 };
 

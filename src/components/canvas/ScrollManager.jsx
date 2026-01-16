@@ -1,47 +1,65 @@
 import { useScroll } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import gsap from "gsap";
-import { use, useEffect } from "react";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
-export const ScrollManager = (props) => {
-  const { section, onSectionChange } = props;
+// ScrollManager: robust Drei/NavBar/section sync
+export const ScrollManager = ({
+  section,
+  onSectionChange,
+  numSections,
+  transitioning,
+}) => {
   const data = useScroll();
-  const lastscroll = useRef(0);
-  const isAnimating = useRef(false);
+  const animating = useRef(false);
+  const animationFrame = useRef();
+  const targetScroll = useRef(null);
 
-  data.fill.classList.add("top-0");
-  data.fill.classList.add("absolute");
-
+  // Animate Drei scroll when NavBar triggers section change
   useEffect(() => {
-    gsap.to(data.el, {
-      duration: 1,
-      scrollTop: section * data.el.clientHeight,
-      onStart: () => {
-        isAnimating.current = true;
-      },
-      onComplete: () => {
-        isAnimating.current = false;
-      },
-    });
-  }, [section]);
-
-  useFrame(() => {
-    if (isAnimating.current) {
-      lastscroll.current = data.scroll.current;
-      return;
-    }
-    const curSection = Math.floor(data.scroll.current * data.pages);
-    if (data.scroll.current > lastscroll.current && curSection === 0) {
-      onSectionChange(1);
-    }
     if (
-      data.scroll.current < lastscroll.current &&
-      data.scroll.current < 1 / (data.pages - 1)
+      typeof section === "number" &&
+      numSections > 1 &&
+      targetScroll.current !== section
     ) {
-      onSectionChange(0);
+      // Only animate if not already at target
+      targetScroll.current = section;
+      animating.current = true;
+      const scrollTarget = section / (numSections - 1);
+      const animate = () => {
+        // Easing for smooth scroll
+        data.scroll.current += (scrollTarget - data.scroll.current) * 0.18;
+        if (Math.abs(data.scroll.current - scrollTarget) > 0.002) {
+          animationFrame.current = requestAnimationFrame(animate);
+        } else {
+          data.scroll.current = scrollTarget;
+          animating.current = false;
+        }
+      };
+      animate();
+      return () => cancelAnimationFrame(animationFrame.current);
     }
-    lastscroll.current = data.scroll.current;
+  }, [section, numSections, data]);
+
+  // Update section only when scroll passes midpoint between sections
+  useFrame(() => {
+    if (animating.current || transitioning) return;
+    const scrollPos = data.scroll.current;
+    const sectionSize = 1 / (numSections - 1);
+    // Find the closest section by midpoint threshold
+    let closest = 0;
+    let minDist = Infinity;
+    for (let i = 0; i < numSections; i++) {
+      const midpoint = i * sectionSize;
+      const dist = Math.abs(scrollPos - midpoint);
+      if (dist < minDist) {
+        minDist = dist;
+        closest = i;
+      }
+    }
+    if (closest !== section) {
+      onSectionChange(closest);
+      targetScroll.current = closest;
+    }
   });
 
   return null;

@@ -6,7 +6,7 @@ import { staggerContainer } from "../utils/motion";
 const HeroWrapper = (Component, idName) =>
   function HOC() {
     return (
-      <div id="home">
+      <div>
         <motion.section
           variants={staggerContainer()}
           initial="hidden"
