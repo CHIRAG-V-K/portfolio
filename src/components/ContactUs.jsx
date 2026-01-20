@@ -42,7 +42,7 @@ const ContactUs = () => {
           to_email: "chirag.v.k2@gmail.com",
           message: form.message,
         },
-        "3VvsecN6EB0OEX250"
+        "3VvsecN6EB0OEX250",
       )
       .then(
         () => {
@@ -60,13 +60,13 @@ const ContactUs = () => {
           console.error(error);
 
           notify("Ahh, something went wrong. Please try again.");
-        }
+        },
       );
   };
   return (
     <motion.div
       variants={slideIn("left", "tween", 0, 0.5)}
-      className="w-full flex flex-col items-end justify-center"
+      className="w-full flex flex-col items-start justify-center"
     >
       <div className=" p-5 bg-gray-300 flex flex-col items-center justify-center gap-5 rounded-md border-2 border-gray-800 shadow-[4px_4px_0px_0px_rgba(50,50,50,1)]">
         <div className="grid grid-cols-3">

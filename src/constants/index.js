@@ -41,8 +41,8 @@ export const navItems = [
 
 export const phrases = [
     `I'm a Full Stack Developer`,
-    `I'm an Application Developer`,
-    `I'm a Backend Developer`,
+    // `I'm an Application Developer`,
+    // `I'm a Backend Developer`,
 ];
 export const name = ["Full Stack Developer", "Application Developer", "Backend Developer"];
 

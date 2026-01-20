@@ -13,52 +13,52 @@ export const ScrollManager = ({
   const animating = useRef(false);
   const animationFrame = useRef();
   const targetScroll = useRef(null);
+  const lastSection = useRef(section);
 
   // Animate Drei scroll when NavBar triggers section change
   useEffect(() => {
     if (
       typeof section === "number" &&
       numSections > 1 &&
-      targetScroll.current !== section
+      (targetScroll.current !== section || lastSection.current !== section)
     ) {
-      // Only animate if not already at target
+      // NavBar changed section, sync scroll immediately
       targetScroll.current = section;
+      lastSection.current = section;
       animating.current = true;
+
       const scrollTarget = section / (numSections - 1);
-      const animate = () => {
-        // Easing for smooth scroll
-        data.scroll.current += (scrollTarget - data.scroll.current) * 0.18;
-        if (Math.abs(data.scroll.current - scrollTarget) > 0.002) {
-          animationFrame.current = requestAnimationFrame(animate);
-        } else {
-          data.scroll.current = scrollTarget;
-          animating.current = false;
-        }
-      };
-      animate();
-      return () => cancelAnimationFrame(animationFrame.current);
+
+      // Directly set scroll for immediate sync
+      data.scroll.current = scrollTarget;
+      animating.current = false;
     }
   }, [section, numSections, data]);
 
   // Update section only when scroll passes midpoint between sections
   useFrame(() => {
     if (animating.current || transitioning) return;
+
     const scrollPos = data.scroll.current;
     const sectionSize = 1 / (numSections - 1);
+
     // Find the closest section by midpoint threshold
     let closest = 0;
     let minDist = Infinity;
+
     for (let i = 0; i < numSections; i++) {
-      const midpoint = i * sectionSize;
-      const dist = Math.abs(scrollPos - midpoint);
+      const sectionPos = i * sectionSize;
+      const dist = Math.abs(scrollPos - sectionPos);
       if (dist < minDist) {
         minDist = dist;
         closest = i;
       }
     }
-    if (closest !== section) {
+
+    // Only update if significant change
+    if (closest !== lastSection.current) {
+      lastSection.current = closest;
       onSectionChange(closest);
-      targetScroll.current = closest;
     }
   });
 

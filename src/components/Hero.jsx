@@ -30,8 +30,8 @@ const AnimatedHeroText = ({ name, phrases }) => {
         .typeString(
           phrase.replace(
             name[i],
-            `<span class="text-secondary  transition-colors duration-300">${name[i]}</span>`
-          )
+            `<span class="text-secondary  transition-colors duration-300">${name[i]}</span>`,
+          ),
         )
         .pauseFor(1000)
         .deleteAll()
@@ -81,7 +81,7 @@ const ProfilePictureCircle = ({ src, gifSrc }) => {
 
 const Hero = () => {
   return (
-    <div className="relative w-full ">
+    <div className="relative w-full">
       <motion.div
         className="absolute inset-0 w-full h-[75vh] rounded-2xl bg-black  blur"
         initial={{ opacity: 0 }}
@@ -89,14 +89,11 @@ const Hero = () => {
         transition={{ duration: 1.5, ease: "easeInOut" }}
       />
       <div className="relative w-full h-[75vh]  grid lg:grid-cols-2 grid-flow-rows">
-        <div className="flex justify-center p-5 items-center ">
-          {/* <ProfilePictureCircle src={chirag_png} gifSrc={chirag_gif} /> */}
-        </div>
-        <div className="w-full flex flex-col justify-center items-start  max-lg:items-center ">
+        <div className="w-full flex flex-col justify-center items-end  max-lg:items-center ">
           {/* <p className={`${styles.heroSubText} `}>Hi 👋, my name is</p>
           <p className={`${styles.heroHeadText} `}>Chirag V K</p> */}
           <p className={`${styles.heroSubText} `}>
-            {Array.from("Hi 👋, my name is").map((char, index) => (
+            {Array.from("Hi 👋, I am").map((char, index) => (
               <PopupText key={index} myKey={index}>
                 {char}
               </PopupText>
@@ -110,6 +107,9 @@ const Hero = () => {
             ))}
           </p>
           <AnimatedHeroText name={name} phrases={phrases} />
+        </div>
+        <div className="flex justify-center p-5 items-center ">
+          {/* <ProfilePictureCircle src={chirag_png} gifSrc={chirag_gif} /> */}
         </div>
       </div>
     </div>

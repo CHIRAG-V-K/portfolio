@@ -54,7 +54,7 @@ const About = () => {
         real-world problems. Let's work together to bring your ideas to life!
       </motion.p>
 
-      <div className="mt-20 grid grid-cols-3 max-sm:grid-cols-1 gap-10">
+      <div className="mt-20 grid grid-cols-4 max-sm:grid-cols-1 gap-10">
         {services.map((service, index) => (
           <ServiceCard key={service.title} index={index} {...service} />
         ))}

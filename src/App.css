@@ -15,6 +15,12 @@ html::-webkit-scrollbar {
   display: none !important;
   width: 0px;
 }
-#root > div.fixed.left-0.right-0.bottom-0.top-0 > div > div > div {
-  overflow: hidden !important;
+
+#root
+  > div.fixed.left-0.right-0.bottom-0.top-0
+  > div
+  > div
+  > div::-webkit-scrollbar {
+  width: 0px;
+  -ms-overflow-style: none !important;
 }
