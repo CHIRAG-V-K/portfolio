@@ -29,6 +29,9 @@ const Model3DCanvas = () => {
     ? "Down"
     : sectionAnimations[section] || "Wave";
 
+  // Ref for Drei ScrollControls
+  const scrollControlsRef = useRef();
+
   // Handler for NavBar navigation
   const handleSectionChange = (newSection) => {
     if (newSection !== section) {
@@ -38,7 +41,7 @@ const Model3DCanvas = () => {
         setSection(newSection);
         setTransitioning(false);
         setPendingSection(null);
-      }, 600); // 600ms for Down animation
+      }, 300);
     }
   };
 
@@ -50,7 +53,7 @@ const Model3DCanvas = () => {
         activeSection={section}
         numSections={NUM_SECTIONS}
       />
-      <div className="fixed left-0 right-0 bottom-0 top-0">
+      <div className="fixed left-0 right-0 bottom-0 top-0 ">
         <Canvas shadows gl={{ antialias: true, alpha: true }}>
           <PerspectiveCamera makeDefault position={[0, 2, 5]} fov={35} />
           <Environment preset="sunset" />
@@ -73,7 +76,12 @@ const Model3DCanvas = () => {
               enableDamping={true}
               dampingFactor={0.1}
             />
-            <ScrollControls pages={NUM_SECTIONS} damping={0.1}>
+            <ScrollControls
+              ref={scrollControlsRef}
+              pages={NUM_SECTIONS}
+              damping={0.1}
+              enabled={false}
+            >
               <group position={[-1.3, -1, 0]}>
                 <ContactShadows
                   opacity={1}

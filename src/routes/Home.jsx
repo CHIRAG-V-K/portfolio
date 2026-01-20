@@ -25,7 +25,7 @@ const Home = () => {
   return (
     <div
       ref={currentRef}
-      className="w-screen h-screen bg-transparent flex flex-col items-center justify-center h-svh  overflow-x-hidden"
+      className="w-screen h-screen bg-transparent flex flex-col items-center justify-center overflow-x-hidden"
     >
       <ParticlesBackground />
       <NavBar />
