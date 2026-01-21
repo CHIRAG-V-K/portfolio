@@ -19,6 +19,7 @@ import NavBar from "../NavBar";
 import SoundToggle from "../SoundToggle";
 import { ScrollManager } from "./ScrollManager";
 import { ParticlesBackground } from "../../utils";
+import { toast } from "react-toastify";
 
 const NUM_SECTIONS = 5; // Update if Interface changes
 
@@ -229,6 +230,22 @@ const Model3DCanvas = () => {
       <div
         className="fixed left-0 right-0 bottom-0 top-0"
         style={{ height: canvasHeight }}
+        onWheel={() => {
+          if (!toast.isActive("scroll-toast")) {
+            toast.warn("Scroll has been disabled for better experience", {
+              toastId: "scroll-toast",
+              autoClose: 2000,
+            });
+          }
+        }}
+        onTouchMove={() => {
+           if (!toast.isActive("scroll-toast")) {
+            toast.warn("Scroll has been disabled for better experience", {
+              toastId: "scroll-toast",
+              autoClose: 2000,
+            });
+          }
+        }}
       >
         <Canvas
           shadows
