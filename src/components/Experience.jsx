@@ -10,7 +10,6 @@ import { motion } from "framer-motion";
 
 import { styles } from "../styles";
 import { experiences } from "../constants";
-import { SectionWrapper } from "../hoc";
 import { textVariant } from "../utils/motion";
 
 const ExperienceCard = ({ experience }) => {
@@ -18,25 +17,25 @@ const ExperienceCard = ({ experience }) => {
     <TimelineItem>
       <TimelinePoint />
       <TimelineContent>
-        <TimelineBody className="mt-6 ">
-          <div className="flex flex-row items-start sm:items-center gap-3 sm:gap-4 max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg">
+        <TimelineBody className="mt-2 ">
+          <div className="flex flex-row items-center sm:items-center gap-3 sm:gap-4 max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg">
             <div
-              className="flex justify-center items-center w-16 h-16 rounded-full"
+              className="flex justify-center items-center w-12 h-12 md:w-16 md:h-16 rounded-full"
               style={{ background: experience.iconBg }}
             >
               <img
                 src={experience.icon}
                 alt={experience.company_name}
-                className="w-10 h-10 object-contain"
+                className="w-10 h-10 md:w-14 md:h-14 object-contain"
               />
             </div>
             <div>
-              <h3 className="text-white text-xl font-bold">
+              <h3 className="text-white text-lg md:text-xl font-bold">
                 {experience.title}
               </h3>
-              <p className="text-secondary text-base font-semibold m-0">
+              <a href="https://rhibhus.com" target="_blank" className="block underline text-secondary text-sm md:text-lg font-semibold m-0">
                 {experience.company_name}
-              </p>
+              </a>
               <span className="text-xs text-gray-400">{experience.date}</span>
             </div>
           </div>
@@ -44,7 +43,7 @@ const ExperienceCard = ({ experience }) => {
             {experience.points.map((point, index) => (
               <li
                 key={`experience-point-${index}`}
-                className="text-white-100 text-sm pl-1 tracking-wider break-words"
+                className="text-white-100 text-xs sm:text-base pl-1 tracking-wider break-words"
               >
                 {point}
               </li>

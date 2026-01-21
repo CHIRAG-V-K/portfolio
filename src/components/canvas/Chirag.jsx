@@ -17,12 +17,14 @@ useGLTF.preload("/models/Chirag.glb");
 const ANIMATIONS_CONFIG = [
   { path: "/animations/Waving.fbx", name: "Wave" },
   { path: "/animations/Talking Phone Pacing.fbx", name: "Talking" },
+  { path: "/animations/Talking On A Cell Phone.fbx", name: "TalkingPhone" },
   { path: "/animations/Getting Up.fbx", name: "Up" },
   { path: "/animations/Jumping Down.fbx", name: "Down" },
   { path: "/animations/Male Sitting Pose.fbx", name: "Sitting" },
   { path: "/animations/Push Up.fbx", name: "PushUp" },
   { path: "/animations/Shooting Arrow.fbx", name: "Shoot" },
   { path: "/animations/Swing To Land.fbx", name: "Swing" },
+  { path: "/animations/Flip Kick.fbx", name: "Kick" },
 ];
 
 export function Chirag(props) {
