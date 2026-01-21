@@ -235,7 +235,9 @@ const Model3DCanvas = () => {
           gl={glConfig}
           dpr={dprValue}
           performance={performanceConfig}
-          style={{ pointerEvents: "none" }}
+          onCreated={(state) => {
+            state.gl.domElement.style.pointerEvents = "none";
+          }}
           events={null}
         >
           <PerspectiveCamera
@@ -319,3 +321,4 @@ const Model3DCanvas = () => {
 };
 
 export default Model3DCanvas;
+

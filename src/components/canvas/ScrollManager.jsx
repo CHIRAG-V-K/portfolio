@@ -40,6 +40,7 @@ export const ScrollManager = ({
     if (animating.current || transitioning) return;
 
     const scrollPos = data.scroll.current;
+    // console.log("Scroll:", scrollPos);
     const sectionSize = 1 / (numSections - 1);
 
     // Find the closest section by midpoint threshold
