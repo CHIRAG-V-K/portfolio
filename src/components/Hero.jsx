@@ -46,7 +46,7 @@ const AnimatedHeroText = ({ name, phrases }) => {
   }, [name, phrases]);
 
   return (
-    <div className="hero-text text-2xl sm:text-3xl md:text-3xl lg:text-3xl font-bold min-h-[4rem] text-center ">
+    <div className="hero-text text-xl sm:text-2xl  font-bold min-h-[4rem] text-center ">
       <h1 ref={typewriterRef}></h1>
     </div>
   );
