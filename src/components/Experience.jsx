@@ -19,7 +19,7 @@ const ExperienceCard = ({ experience }) => {
       <TimelinePoint />
       <TimelineContent>
         <TimelineBody className="mt-6 ">
-          <div className="flex items-center gap-4 max-w-xs md:max-w-sm lg:max-w-md xl:max-w-lg">
+          <div className="flex flex-row items-start sm:items-center gap-3 sm:gap-4 max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg">
             <div
               className="flex justify-center items-center w-16 h-16 rounded-full"
               style={{ background: experience.iconBg }}
@@ -58,13 +58,13 @@ const ExperienceCard = ({ experience }) => {
 
 const Experience = () => {
   return (
-    <div className="w-full">
+    <div className="mt-28 md:mt-0">
       <motion.div variants={textVariant()}>
         <p className={`${styles.sectionSubText} `}>What I have done so far</p>
         <h2 className={`${styles.sectionHeadText}`}>Work Experience.</h2>
       </motion.div>
 
-      <div className="mt-10">
+      <div className="md:mt-10">
         <Timeline>
           {experiences.map((experience, index) => (
             <ExperienceCard

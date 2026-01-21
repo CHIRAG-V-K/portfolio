@@ -22,7 +22,17 @@ import { ParticlesBackground } from "../../utils";
 
 const NUM_SECTIONS = 5; // Update if Interface changes
 
-// Position mapping for each section - customize positions here
+// Mobile detection utility
+const isMobileDevice = () => {
+  if (typeof window === "undefined") return false;
+  const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+  // Check for Android or iOS
+  return /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(
+    userAgent.toLowerCase(),
+  );
+};
+
+// Desktop position mapping for each section - customize positions here
 const SECTION_POSITIONS = {
   0: {
     characterPos: [1.5, -1, 1],
@@ -61,6 +71,45 @@ const SECTION_POSITIONS = {
   },
 };
 
+// Mobile position mapping - optimized for smaller screens (Android/iOS)
+const MOBILE_SECTION_POSITIONS = {
+  0: {
+    characterPos: [0.25, -1.4, 1],
+    shadowPos: [-0.25, 0, -1],
+    characterRot: [0, 0, 0],
+    isStart: false,
+    perspective: [1, 5, 5],
+  },
+  1: {
+    characterPos: [0.7, -1.8, 0.8],
+    shadowPos: [-0.7, 0, -0.8],
+    characterRot: [0, Math.PI * 0.05, 0],
+    isStart: false,
+    perspective: [1, 5, 7],
+  },
+  2: {
+    characterPos: [0.3, -1.8, 1],
+    shadowPos: [-0.3, 0, -1],
+    characterRot: [0, Math.PI * -0.2, 0],
+    isStart: false,
+    perspective: [1, 5, 8],
+  },
+  3: {
+    characterPos: [0.2, -1.7, 1],
+    shadowPos: [-0.2, 0, -1],
+    characterRot: [0, Math.PI * 0.3, 0],
+    isStart: false,
+    perspective: [1.5, 1.5, 9],
+  },
+  4: {
+    characterPos: [1.5, -2.3, 0.4],
+    shadowPos: [-1.5, 0, -0.4],
+    characterRot: [0, 0, 0],
+    isStart: false,
+    perspective: [1, 1, 12],
+  },
+};
+
 // Memoized shadow component to prevent unnecessary re-renders
 const MemoizedContactShadows = React.memo(({ pos }) => (
   <ContactShadows
@@ -80,6 +129,37 @@ const Model3DCanvas = () => {
   const [section, setSection] = React.useState(0);
   const [pendingSection, setPendingSection] = React.useState(null);
   const [transitioning, setTransitioning] = React.useState(false);
+  const [isMobile, setIsMobile] = React.useState(false);
+  const [canvasHeight, setCanvasHeight] = React.useState("100vh");
+
+  // Detect mobile device on component mount and handle resize
+  React.useEffect(() => {
+    const detectMobileAndSetHeight = () => {
+      const mobile = isMobileDevice();
+      setIsMobile(mobile);
+
+      // Calculate canvas height based on device type
+      const viewportHeight = window.innerHeight;
+      if (mobile) {
+        // Mobile: use 1.1x viewport height for content breathing room
+        setCanvasHeight(`${viewportHeight * 1.1}px`);
+      } else {
+        // Desktop: use full viewport height
+        setCanvasHeight(`${viewportHeight}px`);
+      }
+    };
+
+    detectMobileAndSetHeight();
+
+    // Handle window resize
+    const handleResize = () => {
+      detectMobileAndSetHeight();
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const sectionAnimations = useMemo(
     () => ["Wave", "Up", "PushUp", "Shoot", "Talking"],
     [],
@@ -107,23 +187,35 @@ const Model3DCanvas = () => {
     [section],
   );
 
-  // Memoize gl configuration
+  // Memoize gl configuration with mobile optimization
   const glConfig = useMemo(
     () => ({
       antialias: false,
       alpha: true,
-      powerPreference: "high-performance",
+      powerPreference: isMobile ? "low-power" : "high-performance",
       stencil: false,
       depth: true,
     }),
-    [],
+    [isMobile],
   );
+
+  // Select appropriate position set based on device type
+  const positionSet = isMobile ? MOBILE_SECTION_POSITIONS : SECTION_POSITIONS;
 
   // Get current section positions
   const currentPositions = useMemo(
-    () => SECTION_POSITIONS[section] || SECTION_POSITIONS[0],
-    [section],
+    () => positionSet[section] || positionSet[0],
+    [section, positionSet],
   );
+
+  // Calculate DPR and performance based on device
+  const dprValue = isMobile
+    ? Math.min(window.devicePixelRatio, 1.2)
+    : Math.min(window.devicePixelRatio, 1.5);
+
+  const performanceConfig = isMobile
+    ? { min: 0.3, max: 0.7 }
+    : { min: 0.5, max: 1 };
 
   return (
     <>
@@ -134,13 +226,17 @@ const Model3DCanvas = () => {
         numSections={NUM_SECTIONS}
       />
       {/* <SoundToggle />{" "} */}
-      <div className="fixed left-0 right-0 bottom-0 top-0">
+      <div
+        className="fixed left-0 right-0 bottom-0 top-0"
+        style={{ height: canvasHeight }}
+      >
         <Canvas
           shadows
           gl={glConfig}
-          dpr={Math.min(window.devicePixelRatio, 1.5)}
-          performance={{ min: 0.5 }}
-          style={{ pointerEvents: "none", touchAction: "auto" }}
+          dpr={dprValue}
+          performance={performanceConfig}
+          style={{ pointerEvents: "none" }}
+          events={null}
         >
           <PerspectiveCamera
             makeDefault
@@ -159,7 +255,7 @@ const Model3DCanvas = () => {
             shadow-mapSize-height={1024}
             shadow-camera-far={50}
           />
-          <pointLight position={[-10, -10, -10]} decay={0} intensity={0.8} />
+          <pointLight position={[-10, -10, -10]} decay={0} intensity={1} />
           <Suspense fallback={<CanvasLoader />}>
             <OrbitControls
               enabled={true}
@@ -170,22 +266,30 @@ const Model3DCanvas = () => {
               enableRotate={false}
               enableDamping={false}
             />
+            <group
+              position={currentPositions.characterPos}
+              rotation={currentPositions.characterRot}
+              onPointerOver={undefined}
+              onPointerOut={undefined}
+              onPointerDown={undefined}
+              onPointerUp={undefined}
+              onClick={undefined}
+            >
+              <MemoizedContactShadows pos={currentPositions.shadowPos} />
+              <Chirag
+                animation={animation}
+                section={section}
+                isStart={currentPositions.isStart}
+              />
+            </group>
+
             <ScrollControls
               ref={scrollControlsRef}
               pages={NUM_SECTIONS}
               damping={0.1}
             >
-              <group
-                position={currentPositions.characterPos}
-                rotation={currentPositions.characterRot}
-              >
-                <MemoizedContactShadows pos={currentPositions.shadowPos} />
-                <Chirag
-                  animation={animation}
-                  section={section}
-                  isStart={currentPositions.isStart}
-                />
-              </group>
+              {/* 3D Model group - pointer events disabled to prevent interaction */}
+
               <ScrollManager
                 section={section}
                 onSectionChange={setSection}
@@ -200,6 +304,7 @@ const Model3DCanvas = () => {
                   flexDirection: "column",
                   alignItems: "center",
                   justifyContent: "center",
+                  pointerEvents: "auto",
                 }}
               >
                 <Interface />

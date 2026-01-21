@@ -46,7 +46,7 @@ const AnimatedHeroText = ({ name, phrases }) => {
   }, [name, phrases]);
 
   return (
-    <div className="hero-text text-3xl max-sm:text-lg font-bold min-h-[4rem] ">
+    <div className="hero-text text-2xl sm:text-3xl md:text-3xl lg:text-3xl font-bold min-h-[4rem] text-center ">
       <h1 ref={typewriterRef}></h1>
     </div>
   );
@@ -89,7 +89,7 @@ const Hero = () => {
         transition={{ duration: 1.5, ease: "easeInOut" }}
       />
       <div className="relative w-full h-[75vh]  grid lg:grid-cols-2 grid-flow-rows">
-        <div className="w-full flex flex-col justify-center items-end  max-lg:items-center ">
+        <div className="w-full flex flex-col justify-center items-end  max-lg:items-center  ">
           {/* <p className={`${styles.heroSubText} `}>Hi 👋, my name is</p>
           <p className={`${styles.heroHeadText} `}>Chirag V K</p> */}
           <p className={`${styles.heroSubText} `}>
