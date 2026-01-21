@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState, useCallback } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
 
@@ -13,9 +13,10 @@ const ParticlesBackground = () => {
     });
   }, []);
 
-  const particlesLoaded = (container) => {
-    console.log(container);
-  };
+  // Memoized callback to prevent unnecessary re-renders
+  const particlesLoaded = useCallback((container) => {
+    // Optionally log container info for debugging
+  }, []);
 
   const options = useMemo(
     () => ({
@@ -24,7 +25,7 @@ const ParticlesBackground = () => {
           value: "#131313",
         },
       },
-      fpsLimit: 200,
+      fpsLimit: 120, // Optimized from 200 - still smooth but better performance
       interactivity: {
         events: {
           onClick: {
@@ -38,15 +39,15 @@ const ParticlesBackground = () => {
         },
         modes: {
           push: {
-            quantity: 4,
+            quantity: 2, // Reduced from 4
           },
           grab: {
-            distance: 300,
-            duration: 0.4,
+            distance: 200, // Reduced from 300
+            duration: 0.3, // Reduced from 0.4
           },
           repulse: {
-            distance: 350,
-            duration: 0.3,
+            distance: 250, // Reduced from 350
+            duration: 0.2, // Reduced from 0.3
           },
         },
       },
@@ -56,10 +57,10 @@ const ParticlesBackground = () => {
         },
         links: {
           color: "#ffffff",
-          distance: 150,
+          distance: 120, // Reduced from 150
           enable: true,
-          opacity: 0.5,
-          width: 1,
+          opacity: 0.4, // Reduced from 0.5
+          width: 0.8, // Reduced from 1
         },
         move: {
           direction: "none",
@@ -68,29 +69,28 @@ const ParticlesBackground = () => {
             default: "bounce",
           },
           random: false,
-          speed: 4,
+          speed: 2, // Reduced from 4
           straight: false,
         },
         number: {
           density: {
             enable: true,
           },
-          value: 90,
+          value: 60, // Reduced from 90
         },
         opacity: {
-          value: 0.5,
+          value: 0.4, // Reduced from 0.5
         },
         shape: {
           type: "star",
         },
         size: {
-          value: { min: 1, max: 6 },
+          value: { min: 1, max: 4 }, // Reduced max from 6
         },
       },
-      detectRetina: true,
+      detectRetina: false, // Disabled for better performance
     }),
-
-    []
+    [],
   );
 
   if (init) {

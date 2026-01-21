@@ -6,6 +6,7 @@ import { ChevronRight } from "lucide-react";
 import emailjs from "@emailjs/browser";
 import { toast } from "react-toastify";
 import { SocialMediaIcons } from ".";
+
 const ContactUs = () => {
   const [form, setForm] = useState({
     name: "",
@@ -41,7 +42,7 @@ const ContactUs = () => {
           to_email: "chirag.v.k2@gmail.com",
           message: form.message,
         },
-        "3VvsecN6EB0OEX250"
+        "3VvsecN6EB0OEX250",
       )
       .then(
         () => {
@@ -59,13 +60,16 @@ const ContactUs = () => {
           console.error(error);
 
           notify("Ahh, something went wrong. Please try again.");
-        }
+        },
       );
   };
   return (
-    <motion.div variants={slideIn("left", "tween", 0, 0.5)}>
-      <div className="w-3/4 p-5 bg-gray-300 flex flex-col items-center justify-center gap-5 rounded-md border-2 border-gray-800 shadow-[4px_4px_0px_0px_rgba(50,50,50,1)]">
-        <div className="grid grid-cols-3">
+    <motion.div
+      variants={slideIn("left", "tween", 0, 0.5)}
+      className="!z-[999] mt-28 md:mt-0 w-full flex flex-col items-center md:items-start justify-center"
+    >
+      <div className=" p-5 bg-gray-300 flex flex-col items-center justify-center gap-5 rounded-md border-2 border-gray-800 shadow-[4px_4px_0px_0px_rgba(50,50,50,1)]">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 ">
           <div className="w-full flex flex-col items-center justify-center gap-5">
             <p className="font-bold text-xl text-gray-800 self-start">
               Contact Me,
@@ -79,6 +83,7 @@ const ContactUs = () => {
           <div class=" text-base font-semibold text-gray-800 flex flex-col items-center justify-center  ">
             <span>--- OR ---</span>
           </div>
+
           <div className="w-full flex flex-col items-center justify-center gap-5 ">
             <form
               onSubmit={handleSubmit}
@@ -143,4 +148,5 @@ const ContactUs = () => {
   );
 };
 
-export default SectionWrapper(ContactUs, "contactus");
+export default ContactUs;
+// export default SectionWrapper(ContactUs, "contactus");

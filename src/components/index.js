@@ -6,7 +6,8 @@ import Experience from "./Experience";
 import ContactUs from "./ContactUs";
 import SocialMediaIcons from "./SocialMediaIcons";
 import Galaxy from "./Galaxy";
+import SoundToggle from "./SoundToggle";
 import Model3DCanvas from "./canvas/Model3DCanvas";
 import { Model } from "./canvas/Model";
 
-export { Hero, NavBar, About, Tech, Experience, ContactUs, SocialMediaIcons, Galaxy, Model3DCanvas, Model };
+export { Hero, NavBar, About, Tech, Experience, ContactUs, SocialMediaIcons, Galaxy, SoundToggle, Model3DCanvas, Model };

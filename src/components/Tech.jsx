@@ -8,21 +8,28 @@ import { styles } from "../styles";
 
 const Tech = () => {
   return (
-    <>
+    <div className="mt-28 md:mt-0">
       <motion.div variants={textVariant()}>
-        <p className={styles.sectionSubText}>Expertises in</p>
-        <h2 className={styles.sectionHeadText}>Tech.</h2>
+        <p className={`${styles.sectionSubText} text-center`}>Expertises in</p>
+        <h2 className={`${styles.sectionHeadText} text-center`}>Tech.</h2>
       </motion.div>
 
-      <div className="flex flex-row flex-wrap pt-[10vh] justify-center gap-10">
+      <div
+        className="flex flex-row flex-wrap pt-10  md:pt-[6vh] justify-center gap-4 
+      md:gap-6  px-4 md:px-0"
+      >
         {technologies.map((technology) => (
-          <div className="w-28 h-28" key={technology.name}>
+          <div
+            className="w-14 h-14 sm:w-24 sm:h-24 md:w-23 md:h-23"
+            key={technology.name}
+          >
             <BallCanvas icon={technology.icon} />
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 };
 
-export default SectionWrapper(Tech, "tech");
+// export default SectionWrapper(Tech, "tech");
+export default Tech;
