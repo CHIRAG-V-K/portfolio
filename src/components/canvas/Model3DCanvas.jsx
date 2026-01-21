@@ -11,9 +11,7 @@ import {
   BakeShadows,
 } from "@react-three/drei";
 import CanvasLoader from "../CanvasLoader";
-import { useControls } from "leva";
 import { Chirag } from "./Chirag";
-import Home from "../../routes/Home";
 import { Interface } from "../Interface";
 import NavBar from "../NavBar";
 import SoundToggle from "../SoundToggle";
@@ -46,7 +44,7 @@ const SECTION_POSITIONS = {
     characterPos: [2, -1, 1],
     shadowPos: [-2, 0, -1],
     characterRot: [0, Math.PI * 0.05, 0], // Slight rotation on Y axis
-    isStart: true,
+    isStart: false,
     perspective: [2, 2, 5],
   },
   2: {
