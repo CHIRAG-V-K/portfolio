@@ -1,29 +1,39 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { BallCanvas } from "./canvas";
 import { SectionWrapper } from "../hoc";
 import { technologies } from "../constants";
-import { textVariant } from "../utils/motion";
 import { styles } from "../styles";
+import { fadeIn, textVariant } from "../utils/motion";
 
 const Tech = () => {
   return (
-    <div className="mt-28 md:mt-0">
+    <div className="mt-[40px] md:mt-0">
       <motion.div variants={textVariant()}>
-        <p className={`${styles.sectionSubText} text-center`}>Expertises in</p>
-        <h2 className={`${styles.sectionHeadText} text-center`}>Tech.</h2>
+        <p className={`${styles.sectionSubText}`}>My Skills</p>
+        <h2 className={`${styles.sectionHeadText}`}>Technologies.</h2>
       </motion.div>
 
-      <div
-        className="flex flex-row flex-wrap pt-10  md:pt-[6vh] justify-center gap-4 
-      md:gap-6  px-4 md:px-0"
-      >
-        {technologies.map((technology) => (
-          <div
-            className="w-14 h-14 sm:w-24 sm:h-24 md:w-23 md:h-23"
-            key={technology.name}
-          >
-            <BallCanvas icon={technology.icon} />
+      <div className='flex flex-row flex-wrap justify-start md:justify-center gap-6 md:gap-10 mt-7'>
+        {technologies.map((technology, index) => (
+          <div className='w-14 h-14 md:w-28 md:h-28' key={technology.name}>
+             <motion.div
+              variants={fadeIn("right", "spring", index * 0.1, 0.75)}
+              className='w-full green-pink-gradient p-[1px] rounded-full shadow-card'
+              whileHover={{ scale: 1.1, rotate: 5 }}
+            >
+              <div
+                className='bg-tertiary rounded-full md:py-5 py-3 flex justify-center items-center flex-col w-full h-full'
+              >
+                <img
+                  src={technology.icon}
+                  alt={technology.name}
+                  className='md:w-16 md:h-16 w-6 h-6 object-contain'
+                />
+              </div>
+            </motion.div>
+            <p className="text-white md:text-[14px] text-[8px] text-center md:mt-2  mt-1 font-bold tracking-wider">
+              {technology.name}
+            </p>
           </div>
         ))}
       </div>
@@ -31,5 +41,4 @@ const Tech = () => {
   );
 };
 
-// export default SectionWrapper(Tech, "tech");
-export default Tech;
+export default SectionWrapper(Tech, "tech");

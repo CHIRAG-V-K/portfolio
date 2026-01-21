@@ -66,14 +66,14 @@ const ContactUs = () => {
   return (
     <motion.div
       variants={slideIn("left", "tween", 0, 0.5)}
-      className="!z-[999] mt-28 md:mt-0 w-full flex flex-col items-center md:items-start justify-center"
+      className=" mt-28 md:mt-0 w-full flex flex-col items-start md:items-center justify-center"
     >
       <div className=" p-5 bg-gray-300 flex flex-col items-center justify-center gap-5 rounded-md border-2 border-gray-800 shadow-[4px_4px_0px_0px_rgba(50,50,50,1)]">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 ">
-          <div className="w-full flex flex-col items-center justify-center gap-5">
-            <p className="font-bold text-xl text-gray-800 self-start">
+          <div className="w-full flex flex-col items-start justify-center gap-2">
+            <p className="font-bold md:text-xl text-md text-gray-800 self-start">
               Contact Me,
-              <span className="font-semibold text-lg text-gray-600 block">
+              <span className="font-semibold md:text-lg text-sm text-gray-600 block">
                 through any of these!!
               </span>
             </p>

@@ -22,9 +22,8 @@ import {
     figma,
     docker,
     meta,
-    starbucks,
-    tesla,
-    shopify,
+    rhibhus,
+    rhibhus_logo,
     carrent,
     jobit,
     tripguide,
@@ -62,30 +61,17 @@ export const services = [
 ];
 
 export const experiences = [
-    // {
-    //     title: "React.js Developer",
-    //     company_name: "Starbucks",
-    //     icon: starbucks,
-    //     iconBg: "#383E56",
-    //     date: "March 2020 - April 2021",
-    //     points: [
-    //         "Developing and maintaining web applications using React.js and other related technologies.",
-    //         "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-    //         "Implementing responsive design and ensuring cross-browser compatibility.",
-    //         "Participating in code reviews and providing constructive feedback to other developers.",
-    //     ],
-    // },
     {
-        title: "Full stack Developer",
-        company_name: "Meta",
-        icon: meta,
+        title: "Full Stack Developer",
+        company_name: "Rhibhus Infosystems PVT LTD",
+        icon: rhibhus_logo,
         iconBg: "#E6DEDD",
-        date: "Jan 2023 - Present",
+        date: "Oct 2022 - Present",
         points: [
-            "Developing and maintaining web applications using React.js and other related technologies.",
-            "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-            "Implementing responsive design and ensuring cross-browser compatibility.",
-            "Participating in code reviews and providing constructive feedback to other developers.",
+            "Current Engagement: Since March 2025, I have been developing the Flipkart Trust Shield microservice ecosystem to manage after-sales warranties, utilizing Spring Boot (Java 21), WebFlux, and Project Reactor for real-time operations",
+            "Leadership & Architecture: I previously led a team of three developers to architect secure backends and high-quality React UIs, successfully standardizing coding structures to improve code quality by 30%.",
+            "Performance Optimization: I spearheaded backend automation using AWS and Azure, which resulted in a 40% reduction in API response times through the implementation of Lambda functions and caching strategies.",
+            "Integrations: I have extensive experience integrating critical third-party services like Stripe, Razorpay, and WhatsApp, which increased user engagement by 25%.",
         ],
     },
 ];

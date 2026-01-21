@@ -34,11 +34,11 @@ const isMobileDevice = () => {
 // Desktop position mapping for each section - customize positions here
 const SECTION_POSITIONS = {
   0: {
-    characterPos: [1.5, -1, 1],
-    shadowPos: [-1.5, 0, -1],
+    characterPos: [1.7, -1, 1],
+    shadowPos: [-1.7, 0, -1],
     characterRot: [0, 0, 0], // Rotation [x, y, z] in radians
     isStart: false,
-    perspective: [2, 2, 5],
+    perspective: [2, 2, 5.5],
   },
   1: {
     characterPos: [2, -1, 1],
@@ -73,18 +73,18 @@ const SECTION_POSITIONS = {
 // Mobile position mapping - optimized for smaller screens (Android/iOS)
 const MOBILE_SECTION_POSITIONS = {
   0: {
-    characterPos: [0.25, -1.4, 1],
+    characterPos: [0.25, -1.3, 1],
     shadowPos: [-0.25, 0, -1],
     characterRot: [0, 0, 0],
     isStart: false,
     perspective: [1, 5, 5],
   },
   1: {
-    characterPos: [0.9, -1.8, 0.8],
-    shadowPos: [-0.9, 0, -0.8],
+    characterPos: [0.7, -1.8, 0.8],
+    shadowPos: [-0.7, 0, -0.8],
     characterRot: [0, Math.PI * 0.05, 0],
     isStart: false,
-    perspective: [1, 5, 7],
+    perspective: [1, 5, 8],
   },
   2: {
     characterPos: [0.3, -2, 1],
@@ -94,18 +94,18 @@ const MOBILE_SECTION_POSITIONS = {
     perspective: [1, 5, 8],
   },
   3: {
-    characterPos: [0.2, -2, 1],
-    shadowPos: [-0.2, 0, -1],
+    characterPos: [0.6, -2, 1],
+    shadowPos: [-0.6, 0, -1],
     characterRot: [0, Math.PI * 0.3, 0],
     isStart: false,
     perspective: [1.5, 1.5, 9],
   },
   4: {
-    characterPos: [1.5, -2.3, 0.4],
-    shadowPos: [-1.5, 0, -0.4],
+    characterPos: [0.8, -1.6, 0.4],
+    shadowPos: [-0.8, 0, -0.4],
     characterRot: [0,0,0],
     isStart: false,
-    perspective: [1, 1, 12],
+    perspective: [1, 1, 8],
   },
 };
 
@@ -160,9 +160,12 @@ const Model3DCanvas = () => {
   }, []);
 
   const sectionAnimations = useMemo(
-    () => ["Wave", "Up", "PushUp", "Shoot", "Talking"],
+    () => ["Wave", "Kick", "PushUp", "Shoot", "TalkingPhone"],
     [],
   );
+
+
+  // Kick , Swing, TalkingPhone, Talking, Sitting, Down, Up, PushUp, Shoot, Wave
   const animation = transitioning
     ? "Down"
     : sectionAnimations[section] || "Wave";
@@ -176,11 +179,11 @@ const Model3DCanvas = () => {
       if (newSection !== section) {
         setTransitioning(true);
         setPendingSection(newSection);
-        setSection(newSection);
         setTimeout(() => {
           setTransitioning(false);
           setPendingSection(null);
-        }, 300);
+          setSection(newSection);
+        }, 1000);
       }
     },
     [section],
@@ -228,22 +231,22 @@ const Model3DCanvas = () => {
       <div
         className="fixed left-0 right-0 bottom-0 top-0"
         style={{ height: canvasHeight }}
-        onWheel={() => {
-          if (!toast.isActive("scroll-toast")) {
-            toast.warn("Scroll has been disabled for better experience", {
-              toastId: "scroll-toast",
-              autoClose: 2000,
-            });
-          }
-        }}
-        onTouchMove={() => {
-           if (!toast.isActive("scroll-toast")) {
-            toast.warn("Scroll has been disabled for better experience", {
-              toastId: "scroll-toast",
-              autoClose: 2000,
-            });
-          }
-        }}
+        // onWheel={() => {
+        //   if (!toast.isActive("scroll-toast")) {
+        //     toast.warn("Scroll has been disabled for better experience", {
+        //       toastId: "scroll-toast",
+        //       autoClose: 2000,
+        //     });
+        //   }
+        // }}
+        // onTouchMove={() => {
+        //    if (!toast.isActive("scroll-toast")) {
+        //     toast.warn("Scroll has been disabled for better experience", {
+        //       toastId: "scroll-toast",
+        //       autoClose: 2000,
+        //     });
+        //   }
+        // }}
       >
         <Canvas
           shadows

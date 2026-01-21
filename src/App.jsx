@@ -13,7 +13,7 @@ function App() {
           <Route path="/" element={<Model3DCanvas />} />
         </Routes>
       </BrowserRouter>
-      <ToastContainer position="bottom-center" />
+      <ToastContainer position="bottom-right" />
     </>
   );
 }
