@@ -7,7 +7,7 @@ import { fadeIn, textVariant } from "../utils/motion";
 
 const Tech = () => {
   return (
-    <div className="mt-[40px] md:mt-0">
+    <div className="mt-28 md:mt-0">
       <motion.div variants={textVariant()}>
         <p className={`${styles.sectionSubText}`}>My Skills</p>
         <h2 className={`${styles.sectionHeadText}`}>Technologies.</h2>
@@ -41,4 +41,5 @@ const Tech = () => {
   );
 };
 
-export default SectionWrapper(Tech, "tech");
+// export default SectionWrapper(Tech, "tech");
+export default Tech;

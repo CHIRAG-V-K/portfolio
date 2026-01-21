@@ -50,7 +50,7 @@ const Section = ({ children }) => {
   return (
     <section
       style={typeof sectionHeight === "object" ? sectionHeight : undefined}
-      className={`${typeof sectionHeight === "string" ? sectionHeight : ""} w-full max-w-screen-2xl flex flex-col items-start md:justify-center justify-start px-4 sm:px-6 md:px-[10vw] py-0 md:py-0`}
+      className={`${typeof sectionHeight === "string" ? sectionHeight : ""} w-full max-w-screen-2xl flex flex-col items-start md:justify-center justify-start !px-6 md:!px-[10vw] py-0 `}
     >
       {children}
     </section>
