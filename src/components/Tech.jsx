@@ -15,7 +15,7 @@ const Tech = () => {
 
       <div className='flex flex-row flex-wrap justify-start md:justify-center gap-6 md:gap-10 mt-7'>
         {technologies.map((technology, index) => (
-          <div className='w-14 h-14 md:w-28 md:h-28' key={technology.name}>
+          <div className='w-14 h-14 md:w-24 md:h-24' key={technology.name}>
              <motion.div
               variants={fadeIn("right", "spring", index * 0.1, 0.75)}
               className='w-full green-pink-gradient p-[1px] rounded-full shadow-card'
@@ -27,11 +27,11 @@ const Tech = () => {
                 <img
                   src={technology.icon}
                   alt={technology.name}
-                  className='md:w-16 md:h-16 w-6 h-6 object-contain'
+                  className='md:w-14 md:h-14 w-6 h-6 object-contain'
                 />
               </div>
             </motion.div>
-            <p className="text-white md:text-[14px] text-[8px] text-center md:mt-2  mt-1 font-bold tracking-wider">
+            <p className="text-white md:text-[12px] text-[8px] text-center md:mt-2  mt-1 font-bold tracking-wider">
               {technology.name}
             </p>
           </div>

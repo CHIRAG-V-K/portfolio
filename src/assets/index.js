@@ -19,6 +19,19 @@ import redux from "./tech/redux.png";
 import tailwind from "./tech/tailwind.png";
 import typescript from "./tech/typescript.png";
 import threejs from "./tech/threejs.svg";
+import java from "./tech/java.png";
+import springboot from "./tech/springboot.png";
+import mysql from "./tech/mysql.png";
+import postgresql from "./tech/postgresql.png";
+import aws from "./tech/aws.png";
+import gcp from "./tech/gcp.png";
+import python from "./tech/python.png";
+import reactnative from "./tech/reactnative.png";
+import nextjs from "./tech/nextjs.png";
+import kubernetes from "./tech/kubernetes.png";
+import gitlab from "./tech/gitlab.png";
+import cicd from "./tech/cicd.png";
+import graphql from "./tech/graphql.png";
 
 import meta from "./company/meta.png";
 import rhibhus from "./company/RHIBHUS.png";
@@ -61,4 +74,17 @@ export {
   tripguide,
   rhibhus,
   rhibhus_logo,
+  java,
+  springboot,
+  mysql,
+  postgresql,
+  aws,
+  gcp,
+  python,
+  reactnative,
+  nextjs,
+  kubernetes,
+  gitlab,
+  cicd,
+  graphql,
 };

@@ -94,18 +94,18 @@ const MOBILE_SECTION_POSITIONS = {
     perspective: [1, 5, 8],
   },
   3: {
-    characterPos: [0.6, -2, 1],
-    shadowPos: [-0.6, 0, -1],
+    characterPos: [0.9, -2.5, 1],
+    shadowPos: [-0.9, 0, -1],
     characterRot: [0, Math.PI * 0.3, 0],
     isStart: false,
-    perspective: [1.5, 1.5, 9],
+    perspective: [1.5, 1.5, 11],
   },
   4: {
-    characterPos: [0.8, -1.6, 0.4],
-    shadowPos: [-0.8, 0, -0.4],
+    characterPos: [0.7, -1.2, 0.4],
+    shadowPos: [-0.7, 0, -0.4],
     characterRot: [0,0,0],
     isStart: false,
-    perspective: [1, 1, 8],
+    perspective: [1, 1, 7],
   },
 };
 
