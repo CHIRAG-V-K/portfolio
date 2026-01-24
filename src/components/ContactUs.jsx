@@ -25,14 +25,15 @@ const ContactUs = () => {
       [name]: value,
     });
   };
-  const notify = (message) => toast(message);
+  const notifySuccess = () => toast.success("Thank you. I will get back to you as soon as possible.");
+  const notifyError = () => toast.error("Ahh, something went wrong. Please try again.");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
-    emailjs
-      .send(
+    try {
+      await emailjs.send(
         "service_e9z628l",
         "template_tucjbxq",
         {
@@ -42,26 +43,24 @@ const ContactUs = () => {
           to_email: "chirag.v.k2@gmail.com",
           message: form.message,
         },
-        "3VvsecN6EB0OEX250",
-      )
-      .then(
-        () => {
-          setLoading(false);
-          notify("Thank you. I will get back to you as soon as possible.");
-
-          setForm({
-            name: "",
-            email: "",
-            message: "",
-          });
-        },
-        (error) => {
-          setLoading(false);
-          console.error(error);
-
-          notify("Ahh, something went wrong. Please try again.");
-        },
+        {
+          publicKey: "3VvsecN6EB0OEX250",
+        }
       );
+
+      setLoading(false);
+      notifySuccess();
+
+      setForm({
+        name: "",
+        email: "",
+        message: "",
+      });
+    } catch (error) {
+      setLoading(false);
+      console.error(error);
+      notifyError();
+    }
   };
   return (
     <motion.div

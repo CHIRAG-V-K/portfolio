@@ -28,6 +28,19 @@ import {
     jobit,
     tripguide,
     threejs,
+    java,
+    springboot,
+    mysql,
+    postgresql,
+    aws,
+    gcp,
+    python,
+    reactnative,
+    nextjs,
+    kubernetes,
+    gitlab,
+    cicd,
+    graphql,
 } from "../assets";
 
 export const navItems = [
@@ -77,13 +90,10 @@ export const experiences = [
 ];
 
 export const technologies = [
+    // Programming Languages
     {
-        name: "HTML 5",
-        icon: html,
-    },
-    {
-        name: "CSS 3",
-        icon: css,
+        name: "Java",
+        icon: java,
     },
     {
         name: "JavaScript",
@@ -93,41 +103,89 @@ export const technologies = [
         name: "TypeScript",
         icon: typescript,
     },
+    // Frameworks & Libraries
+    {
+        name: "Spring Boot",
+        icon: springboot,
+    },
     {
         name: "React JS",
         icon: reactjs,
     },
     {
-        name: "Redux Toolkit",
-        icon: redux,
+        name: "Next.js",
+        icon: nextjs,
     },
     {
-        name: "Tailwind CSS",
-        icon: tailwind,
+        name: "React Native",
+        icon: reactnative,
+    },
+    {
+        name: "Python",
+        icon: python,
     },
     {
         name: "Node JS",
         icon: nodejs,
     },
     {
-        name: "MongoDB",
-        icon: mongodb,
+        name: "Redux Toolkit",
+        icon: redux,
+    },
+
+    {
+        name: "Tailwind CSS",
+        icon: tailwind,
     },
     {
         name: "Three JS",
         icon: threejs,
     },
     {
-        name: "git",
+        name: "GraphQL",
+        icon: graphql,
+    },
+    // Databases & Caching
+    {
+        name: "MySQL",
+        icon: mysql,
+    },
+    {
+        name: "PostgreSQL",
+        icon: postgresql,
+    },
+    {
+        name: "MongoDB",
+        icon: mongodb,
+    },
+    // Technologies & Tools
+    {
+        name: "AWS",
+        icon: aws,
+    },
+    {
+        name: "GCP",
+        icon: gcp,
+    },
+    {
+        name: "Docker",
+        icon: docker,
+    },
+    {
+        name: "Kubernetes",
+        icon: kubernetes,
+    },
+    {
+        name: "Git",
         icon: git,
     },
     {
-        name: "figma",
-        icon: figma,
+        name: "CI/CD",
+        icon: cicd,
     },
     {
-        name: "docker",
-        icon: docker,
+        name: "Figma",
+        icon: figma,
     },
 ];
 
